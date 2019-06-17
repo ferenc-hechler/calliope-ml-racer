@@ -1,0 +1,1 @@
+copy build\calliope-mini-classic-gcc\source\calliope-project-template-combined.hex G:\
