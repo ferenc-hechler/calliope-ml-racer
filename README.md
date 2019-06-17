@@ -1,7 +1,10 @@
 # Calliope ML Racer
 
 This project is for the Calliope Mini and uses Machine-Learning to solve 
-a simple car driving game.
+a simple car driving game. 
+
+![Calliope ML-Racer](https://raw.githubusercontent.com/ferenc-hechler/calliope-ml-racer/master/images/Calliope-ML-Racer.gif)
+
 
 
 # How to build
