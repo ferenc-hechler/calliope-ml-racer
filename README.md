@@ -30,9 +30,11 @@ Tested with Windows 10:
 
 Info: [yotta](http://docs.yottabuild.org/#installing)
 
+```
 conda create -n calliope python=2.7
 conda activate calliope
 pip install -U pip
+```
 
 run `yt update` once, it will download all required dependencies
 
@@ -51,26 +53,29 @@ run `yt update` once, it will download all required dependencies
 
 In Anaconda shell:
 
+```
 conda activate calliope
 set PATH=\CALLIOPE\BIN\srecord163;%PATH%
 set PATH=\CALLIOPE\BIN\gcc7-arm-none-eabi\bin;%PATH%
 set PATH=\CALLIOPE\BIN\CMake\bin;%PATH%
 set PATH=\CALLIOPE\BIN\ninja;%PATH%
-
+```
 
 ## Build
 
+```
 cd \CALLIOPE\git\calliope-ml-racer
 yotta build
-
+```
 
 ## Flash
 
 assume your Calliope device is mounted to "G:"
 
+```
 cd \CALLIOPE\git\calliope-ml-racer
 copy build\calliope-mini-classic-gcc\source\calliope-project-template-combined.hex G:\
-
+```
 
 
 # IDE use
