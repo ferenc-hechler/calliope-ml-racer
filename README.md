@@ -36,7 +36,7 @@ Info: [yotta](http://docs.yottabuild.org/#installing)
 ```
 conda create -n calliope python=2.7
 conda activate calliope
-pip install -U pip
+pip install -U yotta
 ```
 
 run `yt update` once, it will download all required dependencies
