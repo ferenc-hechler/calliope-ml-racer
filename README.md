@@ -36,7 +36,7 @@ Info: [yotta](http://docs.yottabuild.org/#installing)
 ```
 conda create -n calliope python=2.7
 conda activate calliope
-pip install -U pip
+pip install -U yotta
 ```
 
 run `yt update` once, it will download all required dependencies
@@ -79,6 +79,30 @@ assume your Calliope device is mounted to "G:"
 cd \CALLIOPE\git\calliope-ml-racer
 copy build\calliope-mini-classic-gcc\source\calliope-project-template-combined.hex G:\
 ```
+
+
+# Ubuntu 18.04
+
+quick notes, to be detailed:
+
+https://launchpad.net/gcc-arm-embedded/+download
+-> gcc-arm-none-eabi-5_4-2016q3-20160926-linux.tar.bz2 
+
+http://docs.yottabuild.org/#installing-on-linux
+sudo apt-get install cmake build-essential ninja-build libffi-dev libssl-dev
+
+sudo apt-get install srecord
+
+conda create -n calliope python=2.7
+conda activate calliope
+pip install yotta
+
+cd ~/CALLIOPE/bin
+. set-calliope-path.sh 
+
+cd ~/git/calliope-ml-racer
+yotta update
+yotta build
 
 
 # IDE use
