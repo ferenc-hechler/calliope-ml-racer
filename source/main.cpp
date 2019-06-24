@@ -87,12 +87,20 @@ void runCar() {
 }
 
 
+void runDebug() {
+    uBit.serial.baud(115200);
+    uBit.serial.send("Calliope mini template v1.0\r\n");
+    uBit.serial.send("Hello world!\r\n");
+}
+
 int main(void) {
     uBit.init();
 
-    runCar();
+    runDebug();
 
-    testNN();
+//    runCar();
+
+//    testNN();
 
     log("finished");
     return 0;
