@@ -19,6 +19,7 @@ Tested with Windows 10:
 * Ninja (ninja-win.zip, v1.5.3)
 * SRecord (srecord-1.63-win32.zip) 
 * Eclipse IDE for C/C++ Developers (eclipse-cpp-2019-03-R-win32-x86_64.zip)
+* Putty (putty-0.71.tar.gz)
 
 ## URLs:
 
@@ -28,6 +29,7 @@ Tested with Windows 10:
 * https://github.com/ninja-build/ninja/releases
 * https://sourceforge.net/projects/srecord/
 * https://www.eclipse.org/downloads/packages/release/2019-03/r/eclipse-ide-cc-developers
+* https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
 
 ## Install yotta
 
@@ -47,10 +49,6 @@ run `yt update` once, it will download all required dependencies
 * install CMake and add CMake/bin to your PATH environment variable
 * unzip Ninja into a folder and add the folder to your PATH
 * unzip SRecord into a folder and add the folder to your PATH
-
-## IDE
-
-* Install / unzip Eclipse
 
 ## Example toolchain setup
 
@@ -79,6 +77,27 @@ assume your Calliope device is mounted to "G:"
 cd \CALLIOPE\git\calliope-ml-racer
 copy build\calliope-mini-classic-gcc\source\calliope-project-template-combined.hex G:\
 ```
+
+## IDE
+
+* Install / unzip Eclipse
+* Toolchain is found automatically in PATH
+
+
+## Debug-Logging
+
+Output written to ubit.serial.send(...) can be displayed using a serial terminal like PuTTY.
+Connect the Calliope via USB and look at the device manager, which COM-port is assigned:
+
+![Device-Manager USB-COM port lookup](https://raw.githubusercontent.com/ferenc-hechler/calliope-ml-racer/master/images/device_manager-com_port-for-usb.png)
+
+Here it is "COM5".
+Then create a new serial session in PuTTY to COM5 with speed 115200:
+
+![PuTTY serial settings](https://raw.githubusercontent.com/ferenc-hechler/calliope-ml-racer/master/images/putty-connect-calliope-serial.png)
+ 
+Starting the PuTTY sessions opens a black window. As soon, as something is written from the Calliope program using ubit.serial.send("Hello!") this is displayed in this window.
+The connection is still esablished, if the Calliope is resettet using the reset button.
 
 
 # Ubuntu 18.04
