@@ -108,6 +108,8 @@ https://launchpad.net/gcc-arm-embedded/+download
 -> gcc-arm-none-eabi-5_4-2016q3-20160926-linux.tar.bz2 
 
 http://docs.yottabuild.org/#installing-on-linux
+
+```
 sudo apt-get install cmake build-essential ninja-build libffi-dev libssl-dev
 
 sudo apt-get install srecord
@@ -122,7 +124,7 @@ cd ~/CALLIOPE/bin
 cd ~/git/calliope-ml-racer
 yotta update
 yotta build
-
+```
 
 # IDE use
 
