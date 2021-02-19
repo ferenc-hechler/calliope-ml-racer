@@ -114,3 +114,38 @@ void logInt(int i) {
 	sprintf(buf, "%d", i);
 	log(buf);
 }
+
+void logF(const char * format, ...) {
+  char buf[100];
+  va_list args;
+  va_start (args, format);
+  vsnprintf(buf, 100, format, args);
+  log(buf);
+  va_end(args);
+}
+
+void dbgLog(const char *msg) {
+	uBit.serial.send(msg);
+}
+
+void dbgLogFloat(float f) {
+	char buf[100];
+	float2char(buf, f, 3);
+	dbgLog(buf);
+}
+
+void dbgLogInt(int i) {
+	char buf[100];
+	sprintf(buf, "%d", i);
+	dbgLog(buf);
+}
+
+void dbgLogF(const char * format, ...) {
+  char buf[100];
+  va_list args;
+  va_start (args, format);
+  vsnprintf(buf, 100, format, args);
+  dbgLog(buf);
+  va_end(args);
+}
+
