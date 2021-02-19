@@ -48,7 +48,12 @@ int Race::getScore() const
 
 void Race::print() const
 {
-	dbgLogF("TICK %d: [%d] -> (%d, %d, %d, %d, %d)\r\n", tick, player, getCar(0), getCar(1), getCar(2), getCar(3), getCar(4));
+	print("x");
+}
+
+void Race::print(const char *button) const
+{
+	dbgLogF("%d,%d,%d,%d,%d,%d,%s\r\n", player, getCar(0), getCar(1), getCar(2), getCar(3), getCar(4), button);
 }
 
 void Race::display() const
@@ -99,17 +104,17 @@ void Race::handleButtons() {
 }
 
 void Race::onButtonAPressed() {
+	print("A");
 	if (player > 0) {
 		player--;
 	}
-	print();
 }
 
 void Race::onButtonBPressed() {
+	print("B");
 	if (player < 4) {
 		player++;
 	}
-	print();
 }
 
 void Race::checkCrash() {

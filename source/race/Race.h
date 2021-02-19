@@ -34,6 +34,7 @@ public:
 
 	void display() const;
 	void print() const;
+	void print(const char *button) const;
 
 	~Race();
 };
