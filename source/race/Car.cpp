@@ -1,6 +1,6 @@
 #include <MicroBit.h>
 
-#include "Utils.h"
+#include "platform/Utils.h"
 #include "race/Car.h"
 
 extern MicroBit uBit;

@@ -1,6 +1,6 @@
 #include <MicroBit.h>
 
-#include "Utils.h"
+#include "platform/Utils.h"
 #include "race/Race.h"
 
 extern MicroBit uBit;
@@ -124,11 +124,16 @@ void Race::checkCrash() {
 }
 
 void Race::showCrash() {
+
+	uBit.soundmotor.soundOn(261.626);
+	uBit.sleep(250);
+	uBit.soundmotor.soundOff();
+
 	for (int i=0; i<5; i++) {
-		uBit.sleep(250);
 		invertDisplay();
 		uBit.sleep(500);
 		invertDisplay();
+		uBit.sleep(250);
 	}
 }
 
@@ -159,13 +164,6 @@ Race::~Race()
 }
 
 
-
-void race_main() {
-	Race race;
-	race.start();
-	dbgLogF("Score %d\r\n", race.getScore());
-	logF("Score %d", race.getScore());
-}
 
 
 
