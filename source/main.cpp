@@ -19,11 +19,11 @@ MicroBit uBit;
 int main(void) {
     uBit.init();
 
-    dbgLog("\r\n");
+    log("\r\n");
 	Race race;
 	race.start();
-	dbgLogF("\r\nScore %d\r\n\r\n", race.getScore());
-	logF("Score %d", race.getScore());
+	logF("\r\nScore %d\r\n\r\n", race.getScore());
+	showF("Score %d", race.getScore());
 
 	release_fiber();
     return 0;

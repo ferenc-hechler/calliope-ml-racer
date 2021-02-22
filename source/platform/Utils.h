@@ -14,10 +14,10 @@ void logFloat(float f);
 void logInt(int i);
 void logF(const char *format, ...);
 
-void dbgLog(const char *msg);
-void dbgLogFloat(float f);
-void dbgLogInt(int i);
-void dbgLogF(const char *format, ...);
+void show(const char *msg);
+void showFloat(float f);
+void showInt(int i);
+void showF(const char *format, ...);
 
 
 #endif // UTILS_H

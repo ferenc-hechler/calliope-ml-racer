@@ -54,7 +54,7 @@ void Race::print() const
 
 void Race::print(const char *button) const
 {
-	dbgLogF("%d,%d,%d,%d,%d,%d,%s\r\n", player, getCar(0), getCar(1), getCar(2), getCar(3), getCar(4), button);
+	logF("%d,%d,%d,%d,%d,%d,%s\r\n", player, getCar(0), getCar(1), getCar(2), getCar(3), getCar(4), button);
 }
 
 void Race::display() const
