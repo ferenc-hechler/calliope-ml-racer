@@ -39,6 +39,5 @@ public:
 	~Race();
 };
 
-void race_main();
 
 #endif // RACE_MAIN_H

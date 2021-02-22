@@ -55,10 +55,115 @@ size_t float2char(char* buf, float number, uint8_t digits) {
   return n;
 }
 
+#define SEC_PREFIX 		0
+#define SEC_INTPART 	1
+#define SEC_FRAGPART 	2
+#define SEC_EXPPREFIX 	3
+#define SEC_EXP 		4
+#define SEC_FINISHED 	99
+
+// after calling atof("4.7452347e-316") the program gets stuck some times later.
+// so, use an own char2float() method instead of atof().
+//
+// Example: -12.34e+03
+// Section: 011 22 344
+//
+float char2float(const char* text) {
+	bool neg = false;
+	bool negexp = false;
+	float result = 0;
+	float decpos = 0.1;
+	float exp = 0;
+	const char* pc = text;
+	int section = SEC_PREFIX;
+	while ((section != SEC_FINISHED) && (*pc)) {
+		char c = *pc++;
+		switch (section) {
+		case SEC_PREFIX:
+			if (c == '-') {
+				neg = true;
+			}
+			else if (c == '+') {
+				neg = false;
+			}
+			else {
+				pc--;
+			}
+			section = SEC_INTPART;
+			break;
+		case SEC_INTPART:
+			if (c == '.') {
+				section = SEC_FRAGPART;
+			}
+			else if ((c == 'e') || (c == 'E')) {
+				section = SEC_EXPPREFIX;
+			}
+			else if ((c >= '0') && (c <= '9')) {
+				result = result*10 + (c-'0');
+			}
+			else {
+				section = SEC_FINISHED;
+			}
+			break;
+		case SEC_FRAGPART:
+			if ((c == 'e') || (c == 'E')) {
+				section = SEC_EXPPREFIX;
+			}
+			else if ((c >= '0') && (c <= '9')) {
+				result = result + (decpos*(c-'0'));
+				decpos = decpos / 10;
+			}
+			else {
+				section = SEC_FINISHED;
+			}
+			break;
+		case SEC_EXPPREFIX:
+			if (c == '+') {
+				negexp = false;
+				section = SEC_EXP;
+			}
+			else if (c == '-') {
+				negexp = true;
+				section = SEC_EXP;
+			}
+			else {
+				section = SEC_FINISHED;
+			}
+			break;
+		case SEC_EXP:
+			if ((c >= '0') && (c <= '9')) {
+				exp = exp*10 + (c-'0');
+			}
+			else {
+				section = SEC_FINISHED;
+			}
+			break;
+		default:
+			section = SEC_FINISHED;
+			break;
+		}
+	}
+	if (negexp) {
+		exp = -exp;
+	}
+	while (exp > 0) {
+		result = result*10;
+		exp--;
+	}
+	while (exp < 0) {
+		result = result/10;
+		exp++;
+	}
+	if (neg) {
+		result = -result;
+	}
+	return result;
+}
 
 
 void throwError(const char *errMsg) {
 	while (true) {
+	    uBit.serial.send(errMsg);
 		uBit.display.scroll(errMsg);
         uBit.sleep(1000);
         if ( uBit.buttonA.isPressed() == true ) {

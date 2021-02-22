@@ -1,5 +1,6 @@
 #include <MicroBit.h>
 
+#include "header.h"
 #include "platform/Utils.h"
 #include "race/Race.h"
 
@@ -125,9 +126,11 @@ void Race::checkCrash() {
 
 void Race::showCrash() {
 
+	#ifdef CRASH_SOUND_ON
 	uBit.soundmotor.soundOn(261.626);
 	uBit.sleep(250);
 	uBit.soundmotor.soundOff();
+	#endif
 
 	for (int i=0; i<5; i++) {
 		invertDisplay();
