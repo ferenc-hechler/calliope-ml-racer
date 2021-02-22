@@ -2,6 +2,11 @@
 #define HEADER_H
 
 
-#define CRASH_SOUND_ON
+#undef CRASH_SOUND_ON
+
+#define SHOW_JSON_INPUT
+
+#define SHOW_NN_MATRIX
+
 
 #endif // HEADER_H

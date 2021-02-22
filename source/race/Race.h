@@ -3,6 +3,8 @@
 
 #include "race/Car.h"
 
+class KI;
+
 class Race
 {
 	int 	score;
@@ -12,14 +14,16 @@ class Race
 	Car     car[5];
 	bool    aPressed;
 	bool    bPressed;
+	KI     *ki;
 
 public:
 	Race();
+	Race(KI* aKi);
 
 	void start();
 
 	void move(int ms);
-	void handleButtons();
+	void handleButtons(int ms);
 	void onButtonAPressed();
 	void onButtonBPressed();
 

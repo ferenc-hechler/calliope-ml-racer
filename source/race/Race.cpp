@@ -2,6 +2,7 @@
 
 #include "header.h"
 #include "platform/Utils.h"
+#include "race/KI.h"
 #include "race/Race.h"
 
 extern MicroBit uBit;
@@ -15,8 +16,11 @@ uint8_t disp[25] = {
     0, 0, 0, 0, 0
 };
 
-Race::Race()
+Race::Race() : Race(0) {}
+
+Race::Race(KI *aKi)
 {
+	ki = aKi;
 	player = 2;
 	tick = 0;
 	score = 0;
@@ -79,11 +83,11 @@ void Race::move(int ms)
 		    score++;
 		}
 	}
-	handleButtons();
+	handleButtons(ms);
 	tick++;
 }
 
-void Race::handleButtons() {
+void Race::handleButtons(int ms) {
 	if (uBit.buttonA.isPressed()) {
 		if (!aPressed) {
 			aPressed = true;
@@ -101,6 +105,15 @@ void Race::handleButtons() {
 	}
 	else {
 		bPressed = false;
+	}
+	if (ki) {
+		int kiMove = ki->doKiMove(ms, this);
+		if (kiMove == KI_MOVE_A) {
+			onButtonAPressed();
+		}
+		else if (kiMove == KI_MOVE_B) {
+			onButtonBPressed();
+		}
 	}
 }
 
